@@ -65,7 +65,7 @@ def make_fig(data_frames_with_name_and_average):
 
     for name, df in data_frames_with_name_and_average.items():
 
-        fig = px.line(df, y=['Close', '30 MA'], title=fr"{name}\USD")
+        fig = px.line(df, y=['Close', '30 MA'], title=fr"{name} Stock Market Price")
 
         figs.append(fig)
 
