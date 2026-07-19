@@ -61,6 +61,7 @@ def make_avg (n=30, **kwargs):
     return kwargs
 
 def make_fig(**kwargs):
+    """this function makes charts for each df gievn to it"""
 
     figs= []
 
