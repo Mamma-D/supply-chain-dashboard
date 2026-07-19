@@ -59,6 +59,15 @@ def make_avg(*args, n=30):
     
     return None
 
-def make_fig():
+def make_fig(**kwargs):
+
+    figs= []
+
+    for name, df in kwargs.items():
+
+        fig = px.line(df, y=['Price', '30 MA'], title=fr"{name}\USD")
+
+        figs.append(fig)
+
 
 def show_fig():
