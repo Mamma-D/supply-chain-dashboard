@@ -8,9 +8,10 @@ import plotly.express as px
 
 def get_ticker():
     """this function gets a ticker from user and checks whether its valid or not"""
-    while True:
 
-        user_input = input('\n-----Enter the first ticker name-----\n')
+    while True:
+    
+        user_input = input('\n-----Enter the ticker name-----\n')
         
         try:
             input_cap = user_input.capitalize()
@@ -23,6 +24,7 @@ def get_ticker():
 
         except AttributeError, NameError:
             print("\n-----Your input isn't valid, try again-----")
+
 
 def get_df(user_ticker_1, user_ticker_2):
     """this function receives each tickers data frame from yahoo finance"""
@@ -37,12 +39,6 @@ def get_df(user_ticker_1, user_ticker_2):
 
         if (not df_1.empty) and (not df_2.empty):
             return (df_1, df_2)
-
-        elif df_1.empty:
-            new_ticker_1 = get_ticker(no_df=True, user_ticker_1)
-
-        elif df_2.empty:
-            new_ticker_2 = get_ticker(no_df=True, user_ticker_2)
 
 
 def make_avg():
