@@ -45,19 +45,21 @@ def get_df(user_ticker_1, user_ticker_2):
         df_2 = ticker_2.history('5y')
 
         if (not df_1.empty) and (not df_2.empty):
-            return (df_1, df_2)
+
+            return {user_ticker_1:df_1,
+                    user_ticker_2:df_2}
 
 
-def make_avg(*args, n=30):
+def make_avg (n=30, **kwargs):
     """this function adds a new column of 'n MA' to the price data frame.(n default is 30)"""
 
-    for df in args:
+    for df in kwargs.values():
 
-        rolled_prices = df['Close'].rolling(30)
+        rolled_prices = df['Close'].rolling(n)
 
         df['30 MA'] = rolled_prices.mean()
     
-    return None
+    return kwargs
 
 def make_fig(**kwargs):
 
