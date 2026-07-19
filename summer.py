@@ -56,12 +56,12 @@ def make_avg (n=30, data_frames_with_name):
 
     return data_frames_with_name
 
-def make_fig(**kwargs):
+def make_fig(data_frames_with_name_and_average):
     """this function makes charts for each df gievn to it"""
 
     figs= []
 
-    for name, df in kwargs.items():
+    for name, df in data_frames_with_name_and_average.items():
 
         fig = px.line(df, y=['Price', '30 MA'], title=fr"{name}\USD")
 
