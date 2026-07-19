@@ -48,7 +48,16 @@ def get_df(user_ticker_1, user_ticker_2):
             return (df_1, df_2)
 
 
-def make_avg():
+def make_avg(*args, n=30):
+    """this function adds a new column of 'n MA' to the price data frame.(n default is 30)"""
+
+    for df in args:
+
+        rolled_prices = df['Close'].rolling(30)
+
+        df['30 MA'] = rolled_prices.mean()
+    
+    return None
 
 def make_fig():
 
