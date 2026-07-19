@@ -45,7 +45,7 @@ def get_df(user_ticker_1, user_ticker_2):
                 user_ticker_2:df_2}
 
 
-def make_avg (n=30, data_frames_with_name):
+def make_avg (data_frames_with_name, n=30):
     """this function adds a new column of 'n MA' to the price data frame.(n default is 30)"""
 
     for df in data_frames_with_name.values():
