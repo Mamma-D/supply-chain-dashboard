@@ -17,7 +17,7 @@ def get_ticker(n_of_runs=2):
             user_input = input('\n-----Enter the ticker name-----\n')
 
             try:
-                input_cap = user_input.capitalize()
+                input_cap = user_input.upper()
                 ticker_obj = yf.Ticker(input_cap)
 
                 #checking to see if the ticker is valid
