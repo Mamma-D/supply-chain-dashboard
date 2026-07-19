@@ -14,9 +14,9 @@ def get_ticker(n_of_runs=2):
     for i in range(n_of_runs):
 
         while True:
-        
+
             user_input = input('\n-----Enter the ticker name-----\n')
-            
+
             try:
                 input_cap = user_input.capitalize()
                 ticker_obj = yf.Ticker(input_cap)
@@ -29,7 +29,7 @@ def get_ticker(n_of_runs=2):
 
             except AttributeError, NameError:
                 print("\n-----Your input isn't valid, try again-----")
-    
+
     return tickers
 
 
@@ -58,7 +58,7 @@ def make_avg (n=30, **kwargs):
         rolled_prices = df['Close'].rolling(n)
 
         df['30 MA'] = rolled_prices.mean()
-    
+
     return kwargs
 
 def make_fig(**kwargs):
