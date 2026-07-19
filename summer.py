@@ -25,6 +25,7 @@ def get_ticker(n_of_runs=2):
                     raise NameError(f"Name {input_cap} does not exist.")
 
                 tickers.append(ticker_obj)
+                break
 
             except AttributeError, NameError:
                 print("\n-----Your input isn't valid, try again-----")
