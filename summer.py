@@ -27,7 +27,7 @@ def get_ticker(n_of_runs=2):
                 tickers.append(ticker_obj)
                 break
 
-            except AttributeError, NameError:
+            except (AttributeError, NameError):
                 print("\n-----Your input isn't valid, try again-----")
 
     return tuple(tickers)
