@@ -30,7 +30,7 @@ def get_ticker(n_of_runs=2):
             except AttributeError, NameError:
                 print("\n-----Your input isn't valid, try again-----")
 
-    return tickers
+    return tuple(tickers)
 
 
 def get_df(user_ticker_1, user_ticker_2):
@@ -82,9 +82,9 @@ def show_fig(figs):
 
 if __name__ == '__main__':
 
-    tickers_recevied = get_ticker()
+    ticker_rec_1, ticker_rec_2 = get_ticker()
 
-    dataframes_received = get_df(tickers_recevied)
+    dataframes_received = get_df(ticker_rec_1, ticker_rec_2)
 
     make_avg()
 
