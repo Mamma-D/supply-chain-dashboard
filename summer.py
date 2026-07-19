@@ -83,8 +83,8 @@ if __name__ == '__main__':
 
     dataframes_received = get_df(ticker_rec_1, ticker_rec_2)
 
-    make_avg()
+    data_frames_with_average = make_avg(dataframes_received)
 
-    figs_created = make_fig()
+    figs_created = make_fig(data_frames_with_average)
 
     show_fig(figs_created)
