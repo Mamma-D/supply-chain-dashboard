@@ -6,24 +6,31 @@ import pandas as pd
 import plotly.express as px
 
 
-def get_ticker():
+def get_ticker(n_of_runs=2):
     """this function gets a ticker from user and checks whether its valid or not"""
 
-    while True:
-    
-        user_input = input('\n-----Enter the ticker name-----\n')
+    tickers = []
+
+    for i in range(n_of_runs):
+
+        while True:
         
-        try:
-            input_cap = user_input.capitalize()
+            user_input = input('\n-----Enter the ticker name-----\n')
             
-            #checking to see if the ticker is valid
-            if len(yf.Ticker(input_cap).info) < 2:
-                raise NameError(f"Name {input_cap} does not exist.")
+            try:
+                input_cap = user_input.capitalize()
+                ticker_obj = yf.Ticker(input_cap)
 
-            break
+                #checking to see if the ticker is valid
+                if len(ticker_obj.info) < 2:
+                    raise NameError(f"Name {input_cap} does not exist.")
 
-        except AttributeError, NameError:
-            print("\n-----Your input isn't valid, try again-----")
+                tickers.append(ticker_obj)
+
+            except AttributeError, NameError:
+                print("\n-----Your input isn't valid, try again-----")
+    
+    return tickers
 
 
 def get_df(user_ticker_1, user_ticker_2):
