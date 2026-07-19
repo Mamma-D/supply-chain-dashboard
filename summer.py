@@ -36,18 +36,17 @@ def get_ticker(n_of_runs=2):
 def get_df(user_ticker_1, user_ticker_2):
     """this function receives each tickers data frame from yahoo finance"""
 
-    while True:
 
-        ticker_1 = yf.Ticker(user_ticker_1)
-        ticker_2 = yf.Ticker(user_ticker_2)
+    ticker_1 = yf.Ticker(user_ticker_1)
+    ticker_2 = yf.Ticker(user_ticker_2)
 
-        df_1 = ticker_1.history('5y')
-        df_2 = ticker_2.history('5y')
+    df_1 = ticker_1.history('5y')
+    df_2 = ticker_2.history('5y')
 
-        if (not df_1.empty) and (not df_2.empty):
+    if (not df_1.empty) and (not df_2.empty):
 
-            return {user_ticker_1:df_1,
-                    user_ticker_2:df_2}
+        return {user_ticker_1:df_1,
+                user_ticker_2:df_2}
 
 
 def make_avg (n=30, **kwargs):
