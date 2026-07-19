@@ -77,3 +77,16 @@ def show_fig(figs):
 
     for fig in figs:
         fig.show()
+
+
+if __name__ == '__main__':
+
+    tickers_recevied = get_ticker()
+
+    dataframes_received = get_df(tickers_recevied)
+
+    make_avg()
+
+    figs_created = make_fig()
+
+    show_fig(figs_created)
