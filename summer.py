@@ -38,8 +38,8 @@ def get_df(user_ticker_1, user_ticker_2):
 
     while True:
 
-        ticker_1 = yf.Ticker(str(user_ticker_1))
-        ticker_2 = yf.Ticker(str(user_ticker_2))
+        ticker_1 = yf.Ticker(user_ticker_1)
+        ticker_2 = yf.Ticker(user_ticker_2)
 
         df_1 = ticker_1.history('5y')
         df_2 = ticker_2.history('5y')
