@@ -72,4 +72,7 @@ def make_fig(**kwargs):
         figs.append(fig)
 
 
-def show_fig():
+def show_fig(figs):
+
+    for fig in figs:
+        fig.show()
