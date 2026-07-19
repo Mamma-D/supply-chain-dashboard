@@ -73,6 +73,7 @@ def make_fig(**kwargs):
 
 
 def show_fig(figs):
+    """this functions shows each chart given to it"""
 
     for fig in figs:
         fig.show()
