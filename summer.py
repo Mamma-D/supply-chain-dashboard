@@ -82,7 +82,7 @@ def make_fig(df_wn):
     for (name, df), (primary_color, secondary_color, position) in zip(df_wn.items(), color_position):
 
     # * Adding the price scatter (lines)
-        fig.add_trace(go.scatter(
+        fig.add_trace(go.Scatter(
                 x=df.index,
                 y=df.Close,
                 name=f'{name} Price',
@@ -93,7 +93,7 @@ def make_fig(df_wn):
 
     # * Adding the moving average scatter
 
-        fig.add_trace(go.scatter(
+        fig.add_trace(go.Scatter(
             x=df.index,
             y=df['30 MA'],
             name=f'{name} 30 MA',
