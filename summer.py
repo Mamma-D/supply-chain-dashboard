@@ -142,6 +142,8 @@ def make_fig(df_wn):
 
     fig.update_annotations(font=dict(size=13, color="#9ca3af"))
 
+    fig.update_xaxes(showgrid=False)
+
     #! ----- AI code block -----
     # fig.update_layout(hovermode="x unified")
     # fig.update_xaxes(showspikes=True, spikemode="across", spikecolor="rgba(255,255,255,0.25)", spikethickness=1)
