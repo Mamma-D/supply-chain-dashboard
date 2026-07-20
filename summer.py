@@ -74,6 +74,11 @@ def make_fig(data_frames_with_name_and_average):
         subplot_titles=(ticker_name_1,ticker_name_2)
     )
 
+    color_sets=[
+        ('green', 'lightgreen'),
+        ('blue', 'lightblue')
+    ]
+
     for name, df in data_frames_with_name_and_average.items():
 
     # * Adding the price scatter (lines)
