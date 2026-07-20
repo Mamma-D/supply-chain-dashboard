@@ -124,7 +124,8 @@ def show_fig(fig):
 
 if __name__ == '__main__':
 
-    ticker_rec_1, ticker_rec_2 = get_ticker()
+    #ticker_rec_1, ticker_rec_2 = get_ticker()
+    ticker_rec_1, ticker_rec_2 = yf.Ticker('NVDA'), yf.Ticker('TSLA')
 
     dataframes_received = get_df(ticker_rec_1, ticker_rec_2)
 
