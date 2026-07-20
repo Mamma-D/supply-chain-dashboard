@@ -101,6 +101,11 @@ def make_fig(df_wn):
             line=dict(
                 color=secondary_color, width='1'),
                 row=position, col=1))
+    
+    fig.update_layout(
+        title=f"{ticker_name_1} vs {ticker_name_2} Price",
+        height=700
+    )
 
     return fig
 
