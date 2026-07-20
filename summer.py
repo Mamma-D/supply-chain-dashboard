@@ -76,7 +76,7 @@ def make_fig(df_wn):
 
     color_position=[
         ('green', 'lightgreen', 1),
-        ('blue', 'lightblue', 2)
+        ('#1a369c', "#4b6ad9", 2)
     ]
 
     for (name, df), (primary_color, secondary_color, position) in zip(df_wn.items(), color_position):
