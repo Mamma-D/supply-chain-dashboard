@@ -74,12 +74,12 @@ def make_fig(df_wn):
         subplot_titles=(ticker_name_1,ticker_name_2)
     )
 
-    color_sets=[
-        ('green', 'lightgreen'),
-        ('blue', 'lightblue')
+    color_position=[
+        ('green', 'lightgreen', 1),
+        ('blue', 'lightblue', 2)
     ]
 
-    for (name, df), (primary_color, secondary_color) in zip(df_wn.items(), color_sets):
+    for (name, df), (primary_color, secondary_color, position) in zip(df_wn.items(), color_position):
 
     # * Adding the price scatter (lines)
         fig.add_trace(
@@ -88,7 +88,7 @@ def make_fig(df_wn):
                 y=df.Close,
                 name=f'{name} Price',
                 line=dict(color=primary_color),
-                row=1, col=1
+                row=position, col=1
             )
         )
 
@@ -100,7 +100,7 @@ def make_fig(df_wn):
             name=f'{name} 30 MA',
             line=dict(
                 color=secondary_color, width='1'),
-                row=1, col=1))
+                row=position, col=1))
 
     return fig
 
