@@ -107,11 +107,10 @@ def make_fig(df_wn):
     return fig
 
 
-def show_fig(figs):
+def show_fig(fig):
     """this functions shows each chart given to it"""
 
-    for fig in figs:
-        fig.show()
+    fig.show()
 
 
 if __name__ == '__main__':
