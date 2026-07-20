@@ -107,18 +107,11 @@ def make_fig(df_wn):
 
     fig.update_layout(
         title=f"{ticker_name_1} vs {ticker_name_2} Price",
-        height=700,
-        plot_bgcolor="#000000",
-        paper_bgcolor="#0F0F0F",
-        title_font_color="#ffffff",
-        legend=dict(font=dict(color="#ffffff")),
+        height=700
     )
 
-    fig.update_annotations(font_color="#ffffff")
-
-    fig.update_xaxes(tickfont=dict(color="#ffffff"), showgrid=False)
-    fig.update_yaxes(tickfont=dict(color="#171717"))
-
+    fig.update_layout(template='plotly_dark')
+    
     return fig
 
 
