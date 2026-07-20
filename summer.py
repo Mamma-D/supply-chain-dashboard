@@ -3,6 +3,7 @@ and it displays its charts"""
 
 import yfinance as yf
 import plotly.express as px
+from plotly.subplots import make_subplots
 
 
 def get_ticker(n_of_runs=2):
