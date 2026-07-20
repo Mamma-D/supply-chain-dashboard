@@ -18,7 +18,7 @@ def get_ticker(n_of_runs=2):
             user_input = input('\n-----Enter the ticker name-----\n')
 
             try:
-                input_cap = user_input.upper()
+                input_cap = user_input.strip().upper()
                 ticker_obj = yf.Ticker(input_cap)
 
                 #checking to see if the ticker is valid
@@ -101,7 +101,9 @@ def make_fig(df_wn):
     
     fig.update_layout(
         title=f"{ticker_name_1} vs {ticker_name_2} Price",
-        height=700
+        height=700,
+        plot_bgcolor='#2b2b2b',
+        paper_bgcolor="#2F2F2F"
     )
 
     return fig
