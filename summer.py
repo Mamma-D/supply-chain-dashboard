@@ -87,7 +87,7 @@ def make_fig(df_wn):
                 x=df.index,
                 y=df.Close,
                 name=f'{name} Price',
-                line={'color':'green'},
+                line=dict(color=primary_color),
                 row=1, col=1
             )
         )
@@ -99,7 +99,7 @@ def make_fig(df_wn):
             y=df['30 MA'],
             name='NVDA 30 MA',
             line=dict(
-                color='lightgreen', width='1'),
+                color=secondary_color, width='1'),
                 row=1, col=1))
 
     return figs
