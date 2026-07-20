@@ -102,7 +102,7 @@ def make_fig(df_wn):
                 color=secondary_color, width='1'),
                 row=1, col=1))
 
-    return figs
+    return fig
 
 
 def show_fig(figs):
