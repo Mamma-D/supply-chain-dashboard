@@ -60,11 +60,11 @@ def make_avg (data_frames_with_name, n=30):
 
     return data_frames_with_name
 
-def make_fig(data_frames_with_name_and_average):
+def make_fig(df_wn):
     """this function makes charts for each df gievn to it"""
 
-    ticker_name_1 = data_frames_with_name_and_average.keys()[0]
-    ticker_name_2 = data_frames_with_name_and_average.keys()[1]
+    ticker_name_1 = df_wn.keys()[0]
+    ticker_name_2 = df_wn.keys()[1]
 
     fig = make_subplots(
         cols=1,
@@ -79,7 +79,7 @@ def make_fig(data_frames_with_name_and_average):
         ('blue', 'lightblue')
     ]
 
-    for name, df in data_frames_with_name_and_average.items():
+    for name, df in df_wn.items():
 
     # * Adding the price scatter (lines)
         fig.add_trace(
