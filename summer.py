@@ -74,10 +74,9 @@ def make_fig(data_frames_with_name_and_average):
         subplot_titles=(ticker_name_1,ticker_name_2)
     )
 
-    # * Adding the price scatter (lines)
     for name, df in data_frames_with_name_and_average.items():
 
-
+    # * Adding the price scatter (lines)
         fig.add_trace(
             go.scatter(
                 x=df.index,
@@ -87,6 +86,16 @@ def make_fig(data_frames_with_name_and_average):
                 row=1, col=1
             )
         )
+
+    # * Adding the moving average scatter
+
+        fig.add_trace(go.scatter(
+            x=df.index,
+            y=df['30 MA'],
+            name='NVDA 30 MA',
+            line=dict(
+                color='lightgreen', width='1'),
+                row=1, col=1))
 
     return figs
 
