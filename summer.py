@@ -96,7 +96,7 @@ def make_fig(df_wn):
             y=df['30 MA'],
             name=f'{name} 30 MA',
             line=dict(
-                color=secondary_color, width='1')),
+                color=secondary_color, width=1)),
                 row=position, col=1)
     
     fig.update_layout(
