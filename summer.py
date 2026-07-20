@@ -85,7 +85,7 @@ def make_fig(df_wn):
             go.Scatter(
                 x=df.index,
                 y=df.Close,
-                name=f"{name} Price",
+                name=f"{name} Stock Price",
                 line=dict(color=primary_color),
             ),
             row=position,
@@ -98,7 +98,7 @@ def make_fig(df_wn):
             go.Scatter(
                 x=df.index,
                 y=df["30 MA"],
-                name=f"{name} 30 MA",
+                name=f"30 MA",
                 line=dict(color=secondary_color, width=1),
             ),
             row=position,
@@ -106,12 +106,12 @@ def make_fig(df_wn):
         )
 
     fig.update_layout(
-        title=f"{ticker_name_1} vs {ticker_name_2} Price",
+        title=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
         height=700
     )
 
     fig.update_layout(template='plotly_dark')
-    
+
     return fig
 
 
