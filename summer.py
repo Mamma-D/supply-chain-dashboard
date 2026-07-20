@@ -74,11 +74,19 @@ def make_fig(data_frames_with_name_and_average):
         subplot_titles=(ticker_name_1,ticker_name_2)
     )
 
+    # * Adding the price scatter (lines)
     for name, df in data_frames_with_name_and_average.items():
 
-        fig = px.line(df, y=['Close', '30 MA'], title=fr"{name} Stock Market Price")
 
-        figs.append(fig)
+        fig.add_trace(
+            go.scatter(
+                x=df.index,
+                y=df.Close,
+                name=f'{name} Price',
+                line={'color':'green'},
+                row=1, col=1
+            )
+        )
 
     return figs
 
