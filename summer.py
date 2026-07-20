@@ -63,8 +63,8 @@ def make_avg (data_frames_with_name, n=30):
 def make_fig(data_frames_with_name_and_average):
     """this function makes charts for each df gievn to it"""
 
-    ticker_name_1 = data_frames_with_average.keys()[0]
-    ticker_name_2 = data_frames_with_average.keys()[1]
+    ticker_name_1 = data_frames_with_name_and_average.keys()[0]
+    ticker_name_2 = data_frames_with_name_and_average.keys()[1]
 
     fig = make_subplots(
         cols=1,
