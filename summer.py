@@ -74,9 +74,22 @@ def make_fig(df_wn):
         subplot_titles=(ticker_name_1, ticker_name_2),
     )
 
-    color_position = [("green", "lightgreen", 1), ("#1a369c", "#4b6ad9", 2)]
+    color_position = [
+                    ("rgba(2, 191, 0, 0.8)",
+                       "#82D682",
+                       1,
+                       "rgba(2, 191, 0, 0.0)",
+                       "rgba(2, 191, 0, 0.4)"
+                    ),
+                    ("rgba(17, 36, 226, 0.8)",
+                        "#4b6ad9",
+                        2,
+                        "rgba(17, 36, 226, 0.0)",
+                        "rgba(17, 36, 226, 0.4)"
+                    )
+                    ]
 
-    for (name, df), (primary_color, secondary_color, position) in zip(
+    for (name, df), (primary_color, secondary_color, position, fill_1, fill_2) in zip(
         df_wn.items(), color_position
     ):
 
@@ -87,6 +100,7 @@ def make_fig(df_wn):
                 y=df.Close,
                 name=f"{name} Stock Price",
                 line=dict(color=primary_color),
+                fill='tozeroy', fillgradient=dict(type='vertical', colorscale=[[0.0, fill_1],[1.0, fill_2]])
             ),
             row=position,
             col=1,
@@ -99,7 +113,7 @@ def make_fig(df_wn):
                 x=df.index,
                 y=df["30 MA"],
                 name=f"30 MA",
-                line=dict(color=secondary_color, width=1),
+                line=dict(color=secondary_color, width=1, dash='dot'),
             ),
             row=position,
             col=1,
