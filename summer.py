@@ -103,10 +103,15 @@ def make_fig(df_wn):
         title=f"{ticker_name_1} vs {ticker_name_2} Price",
         height=700,
         plot_bgcolor='#2b2b2b',
-        paper_bgcolor="#2F2F2F"
+        paper_bgcolor="#2F2F2F",
+        title_font_color="#ffffff",
+        legend=dict(font=(dict(color="#ffffff")))
     )
 
-    fig.update_xaxes(showgrid=False)
+    fig.update_annotations(font_color="#ffffff")
+
+    fig.update_xaxes(tickfont=dict(color="#ffffff"),showgrid=False)
+    fig.update_yaxes(tickfont=dict(color="#ffffff"))
 
     return fig
 
