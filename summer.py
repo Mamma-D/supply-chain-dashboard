@@ -79,7 +79,7 @@ def make_fig(df_wn):
         ('blue', 'lightblue')
     ]
 
-    for name, df in df_wn.items():
+    for (name, df), (primary_color, secondary_color) in zip(df_wn.items(), color_sets):
 
     # * Adding the price scatter (lines)
         fig.add_trace(
