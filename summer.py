@@ -97,7 +97,7 @@ def make_fig(df_wn):
         fig.add_trace(go.scatter(
             x=df.index,
             y=df['30 MA'],
-            name='NVDA 30 MA',
+            name=f'{name} 30 MA',
             line=dict(
                 color=secondary_color, width='1'),
                 row=1, col=1))
