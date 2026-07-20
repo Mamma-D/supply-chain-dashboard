@@ -106,6 +106,8 @@ def make_fig(df_wn):
         paper_bgcolor="#2F2F2F"
     )
 
+    fig.update_xaxes(showgrid=False)
+
     return fig
 
 
