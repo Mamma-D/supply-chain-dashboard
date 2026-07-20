@@ -11,7 +11,7 @@ def get_ticker(n_of_runs=2):
 
     tickers = []
 
-    for i in range(n_of_runs):
+    for _ in range(n_of_runs):
 
         while True:
 
@@ -75,19 +75,21 @@ def make_fig(df_wn):
     )
 
     color_position = [
-                    ("rgba(2, 191, 0, 0.8)",
-                       "#82D682",
-                       1,
-                       "rgba(2, 191, 0, 0.0)",
-                       "rgba(2, 191, 0, 0.4)"
-                    ),
-                    ("rgba(17, 36, 226, 0.8)",
-                        "#4b6ad9",
-                        2,
-                        "rgba(17, 36, 226, 0.0)",
-                        "rgba(17, 36, 226, 0.4)"
-                    )
-                    ]
+        (
+            "rgba(2, 191, 0, 0.8)",
+            "#82D682",
+            1,
+            "rgba(2, 191, 0, 0.0)",
+            "rgba(2, 191, 0, 0.4)",
+        ),
+        (
+            "rgba(17, 36, 226, 0.8)",
+            "#4b6ad9",
+            2,
+            "rgba(17, 36, 226, 0.0)",
+            "rgba(17, 36, 226, 0.4)",
+        ),
+    ]
 
     for (name, df), (primary_color, secondary_color, position, fill_1, fill_2) in zip(
         df_wn.items(), color_position
@@ -99,8 +101,11 @@ def make_fig(df_wn):
                 x=df.index,
                 y=df.Close,
                 name=f"{name} Stock Price",
-                line=dict(color=primary_color),
-                fill='tozeroy', fillgradient=dict(type='vertical', colorscale=[[0.0, fill_1],[1.0, fill_2]])
+                line=dict(color=primary_color, width=1),
+                fill="tozeroy",
+                fillgradient=dict(
+                    type="vertical", colorscale=[[0.0, fill_1], [1.0, fill_2]]
+                ),
             ),
             row=position,
             col=1,
@@ -112,19 +117,46 @@ def make_fig(df_wn):
             go.Scatter(
                 x=df.index,
                 y=df["30 MA"],
-                name=f"30 MA",
-                line=dict(color=secondary_color, width=1, dash='dot'),
+                name="30 MA",
+                line=dict(color=secondary_color, width=1, dash="dot"),
             ),
             row=position,
             col=1,
         )
 
+    fig.update_layout(template="plotly_dark")
+
     fig.update_layout(
         title=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
-        height=700
+        height=700,
+        font=dict(family="Inter, Helvetica, Arial, sans-serif", color="#d1d5db"),
+        legend=dict(orientation="h", 
+                    yanchor="bottom",
+                    y=1.05,
+                    xanchor="right",
+                    x=1,
+                    bgcolor="rgba(0,0,0,0)"
+                    ),
+        margin=dict(l=40, r=40, t=40, b=40)
     )
 
-    fig.update_layout(template='plotly_dark')
+    fig.update_annotations(font=dict(size=13, color="#9ca3af"))
+
+    #! ----- AI code block -----
+    # fig.update_layout(hovermode="x unified")
+    # fig.update_xaxes(showspikes=True, spikemode="across", spikecolor="rgba(255,255,255,0.25)", spikethickness=1)
+    # fig.update_xaxes(
+    # rangeselector=dict(
+    #     buttons=[
+    #         dict(count=6, label="6m", step="month", stepmode="backward"),
+    #         dict(count=1, label="1y", step="year", stepmode="backward"),
+    #         dict(count=3, label="3y", step="year", stepmode="backward"),
+    #         dict(step="all", label="All"),
+    #         ]
+    #     ),
+    #     row=1, col=1
+    # )
+    #! ----- AI code block -----
 
     return fig
 
