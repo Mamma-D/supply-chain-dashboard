@@ -82,8 +82,7 @@ def make_fig(df_wn):
     for (name, df), (primary_color, secondary_color, position) in zip(df_wn.items(), color_position):
 
     # * Adding the price scatter (lines)
-        fig.add_trace(
-            go.scatter(
+        fig.add_trace(go.scatter(
                 x=df.index,
                 y=df.Close,
                 name=f'{name} Price',
