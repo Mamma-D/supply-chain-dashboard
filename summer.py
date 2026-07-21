@@ -136,9 +136,15 @@ def make_fig(df_wn):
 
     #* Updating the plot applying following changes: Adding title, scretching the charts, relocating the legend
     fig.update_layout(
-        title=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
+        title=dict(text=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
+                   y=0.99, x=0.5,
+                   xanchor='center',
+                   yanchor='top'
+                    ),
         height=700,
-        font=dict(family="Inter, Helvetica, Arial, sans-serif", color="#d1d5db"),
+        font=dict(family="Inter, Helvetica, Arial, sans-serif",
+                  color="#d1d5db"
+                  ),
         legend=dict(orientation="h", 
                     yanchor="bottom",
                     y=1.05,
