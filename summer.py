@@ -1,4 +1,4 @@
-"""this scripts calls APIs and gets 5 yaer history for the two tickers given to it
+"""this scripts calls APIs and gets 5 year history for the two tickers given to it
 and it displays its charts"""
 
 import yfinance as yf
