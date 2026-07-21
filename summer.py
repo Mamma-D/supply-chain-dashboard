@@ -118,8 +118,8 @@ def make_fig(df_wn):
         fig.add_trace(
             go.Scatter(
                 x=df.index,
-                y=df["30 MA"],
-                name="30 MA",
+                y=df.iloc[:,-1],
+                name=df.columns[-1],
                 line=dict(color=secondary_color, width=1, dash="dot"),
             ),
             row=position,
