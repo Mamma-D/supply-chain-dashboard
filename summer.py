@@ -142,8 +142,9 @@ def make_fig(df_wn):
         legend=dict(orientation="h", 
                     yanchor="bottom",
                     y=1.05,
-                    xanchor="right",
-                    x=1,
+                    xanchor="center",
+                    x=0.5,
+                    font=dict(size=10),
                     bgcolor="rgba(0,0,0,0)"
                     )
     )
