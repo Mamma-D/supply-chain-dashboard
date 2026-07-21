@@ -64,10 +64,12 @@ def make_avg(data_frames_with_name, n=30):
 def make_fig(df_wn):
     """this function makes charts for each df gievn to it"""
 
+    #* Extracting ticker's names 
     dict_keys_list = list(df_wn.keys())
     ticker_name_1 = dict_keys_list[0]
     ticker_name_2 = dict_keys_list[1]
 
+    #* Making a subplot
     fig = make_subplots(
         cols=1,
         rows=2,
@@ -76,6 +78,7 @@ def make_fig(df_wn):
         subplot_titles=(ticker_name_1, ticker_name_2),
     )
 
+    #* Defining each chart properties including colors and positions in the plot
     color_position = [
         (
             "rgba(2, 191, 0, 0.8)",
@@ -92,6 +95,8 @@ def make_fig(df_wn):
             "rgba(17, 36, 226, 0.4)",
         ),
     ]
+
+    #* Adding each scatter to the plot we made earlier with their properties
 
     for (name, df), (primary_color, secondary_color, position, fill_1, fill_2) in zip(
         df_wn.items(), color_position
@@ -126,8 +131,10 @@ def make_fig(df_wn):
             col=1,
         )
 
+    #* Applying plotly default dark theme 
     fig.update_layout(template="plotly_dark")
 
+    #* Updating the plot applying following changes: Adding title, scretching the charts, relocating the legend
     fig.update_layout(
         title=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
         height=700,
@@ -141,11 +148,14 @@ def make_fig(df_wn):
                     )
     )
 
+    #* Updating annotations. Making them smaller and darker 
     fig.update_annotations(font=dict(size=13, color="#9ca3af"))
 
+    #* Removing vertical guide lines in chart
     fig.update_xaxes(showgrid=False)
 
     #! ----- AI code block -----
+    #* This block makes custom time interval buttons
     # fig.update_layout(hovermode="x unified")
     # fig.update_xaxes(showspikes=True, spikemode="across", spikecolor="rgba(255,255,255,0.25)", spikethickness=1)
     # fig.update_xaxes(
