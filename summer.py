@@ -138,8 +138,7 @@ def make_fig(df_wn):
                     xanchor="right",
                     x=1,
                     bgcolor="rgba(0,0,0,0)"
-                    ),
-        margin=dict(l=40, r=40, t=40, b=40)
+                    )
     )
 
     fig.update_annotations(font=dict(size=13, color="#9ca3af"))
