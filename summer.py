@@ -81,15 +81,15 @@ def make_fig(df_wn):
     #* Defining each chart properties including colors and positions in the plot
     color_position = [
         (
-            "rgba(2, 191, 0, 0.8)",
-            "#82D682",
+            "rgba(37, 152, 28, 0.8)",
+            "rgba(130, 214, 130, 1)",
             1,
-            "rgba(2, 191, 0, 0.0)",
-            "rgba(2, 191, 0, 0.4)",
+            "rgba(17, 148, 0, 0.0)",
+            "rgba(17, 148, 0, 0.4)",
         ),
         (
-            "rgba(17, 36, 226, 0.8)",
-            "#4b6ad9",
+            "rgba(29, 25, 255, 0.8)",
+            "rgba(107, 105, 255, 0.8)",
             2,
             "rgba(17, 36, 226, 0.0)",
             "rgba(17, 36, 226, 0.4)",
@@ -108,7 +108,7 @@ def make_fig(df_wn):
                 x=df.index,
                 y=df.Close,
                 name=f"{name} Stock Price",
-                line=dict(color=primary_color, width=1),
+                line=dict(color=primary_color, width=1.2),
                 fill="tozeroy",
                 fillgradient=dict(
                     type="vertical", colorscale=[[0.0, fill_1], [1.0, fill_2]]
@@ -125,7 +125,7 @@ def make_fig(df_wn):
                 x=df.index,
                 y=df.iloc[:,-1],
                 name=df.columns[-1],
-                line=dict(color=secondary_color, width=1, dash="dot"),
+                line=dict(color=secondary_color, width=1, dash="solid"),
             ),
             row=position,
             col=1,
