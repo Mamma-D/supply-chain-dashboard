@@ -56,7 +56,7 @@ def make_avg(data_frames_with_name, n=30):
 
         rolled_prices = df["Close"].rolling(n)
 
-        df["30 MA"] = rolled_prices.mean()
+        df[f"{n} MA"] = rolled_prices.mean()
 
     return data_frames_with_name
 
