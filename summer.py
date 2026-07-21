@@ -20,12 +20,13 @@ def get_ticker(n_of_runs=2):
             try:
                 input_cap = user_input.strip().upper()
                 ticker_obj = yf.Ticker(input_cap)
+                five_year_history = ticker_obj.history("5y")
 
                 # checking to see if the ticker is valid
-                if len(ticker_obj.info) < 2:
+                if five_year_history.empty:
                     raise NameError(f"Name {input_cap} does not exist.")
 
-                tickers.append(ticker_obj)
+                tickers.append(five_year_history)
                 break
 
             except (AttributeError, NameError):
