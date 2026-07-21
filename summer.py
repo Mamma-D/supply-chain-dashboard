@@ -40,11 +40,13 @@ def get_df(user_ticker_1, user_ticker_2):
     df_1 = user_ticker_1.history("5y")
     df_2 = user_ticker_2.history("5y")
 
-    if (not df_1.empty) and (not df_2.empty):
+    if (df_1.empty) and (df_2.empty):
 
-        first_ticker_name = user_ticker_1.info.get("shortName")
-        second_ticker_name = user_ticker_2.info.get("shortName")
-        return {first_ticker_name: df_1, second_ticker_name: df_2}
+        raise ValueError("Data frames could not be retrieved. (empty data frames)")
+
+    first_ticker_name = user_ticker_1.info.get("shortName")
+    second_ticker_name = user_ticker_2.info.get("shortName")
+    return {first_ticker_name: df_1, second_ticker_name: df_2}
 
 
 def make_avg(data_frames_with_name, n=30):
