@@ -141,7 +141,6 @@ def make_fig(df_wn):
                    xanchor='center',
                    yanchor='top'
                     ),
-        height=700,
         font=dict(family="Inter, Helvetica, Arial, sans-serif",
                   color="#d1d5db"
                   ),
@@ -152,7 +151,10 @@ def make_fig(df_wn):
                     x=0.5,
                     font=dict(size=10),
                     bgcolor="rgba(0,0,0,0)"
-                    )
+                    ),
+                    hovermode="x unified",
+                    height=570
+                    #width=200
     )
 
     #* Updating annotations. Making them smaller and darker 
@@ -164,7 +166,6 @@ def make_fig(df_wn):
     #! ----- AI code block -----
 
     # *  This block changes your hovering. when you move your mouse in the chart it shows more detailed informations
-    fig.update_layout(hovermode="x unified")
     fig.update_xaxes(
                     showspikes=True,
                     spikemode="across",
