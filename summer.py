@@ -162,20 +162,30 @@ def make_fig(df_wn):
     fig.update_xaxes(showgrid=False)
 
     #! ----- AI code block -----
-    #* This block makes custom time interval buttons
-    # fig.update_layout(hovermode="x unified")
-    # fig.update_xaxes(showspikes=True, spikemode="across", spikecolor="rgba(255,255,255,0.25)", spikethickness=1)
-    # fig.update_xaxes(
-    # rangeselector=dict(
-    #     buttons=[
-    #         dict(count=6, label="6m", step="month", stepmode="backward"),
-    #         dict(count=1, label="1y", step="year", stepmode="backward"),
-    #         dict(count=3, label="3y", step="year", stepmode="backward"),
-    #         dict(step="all", label="All"),
-    #         ]
-    #     ),
-    #     row=1, col=1
-    # )
+
+    # *  This block changes your hovering. when you move your mouse in the chart it shows more detailed informations
+    fig.update_layout(hovermode="x unified")
+    fig.update_xaxes(
+                    showspikes=True,
+                    spikemode="across",
+                    spikesnap="cursor",       # follows the mouse smoothly, not jumping between data points
+                    spikedash="dot",          # dotted instead of solid — reads as a guide, not a cut
+                    spikecolor="rgba(255,255,255,0.3)",
+                    spikethickness=1
+                    )
+
+    # * This block adds four buttons to top-left that selects time invertals 
+    fig.update_xaxes(
+    rangeselector=dict(
+        buttons=[
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(count=3, label="3y", step="year", stepmode="backward"),
+            dict(step="all", label="All"),
+            ]
+        ),
+        row=1, col=1
+    )
     #! ----- AI code block -----
 
     return fig
