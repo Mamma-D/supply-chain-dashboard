@@ -37,8 +37,8 @@ def get_ticker(n_of_runs=2):
 def get_df(user_ticker_1, user_ticker_2):
     """this function receives each tickers data frame from yahoo finance"""
 
-    df_1 = user_ticker_1.history("5y")
-    df_2 = user_ticker_2.history("5y")
+    df_1 = user_ticker_1.history("5y", actions=False)
+    df_2 = user_ticker_2.history("5y", actions=False)
 
     if (df_1.empty) and (df_2.empty):
 
