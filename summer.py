@@ -136,15 +136,18 @@ def make_fig(df_wn):
 
     #* Updating the plot applying following changes: Adding title, scretching the charts, relocating the legend
     fig.update_layout(
-        title=dict(text=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
-                   y=0.99, x=0.5,
-                   xanchor='center',
-                   yanchor='top'
+        title=dict(
+                    text=f"{ticker_name_1} vs {ticker_name_2} Stock Price",
+                    y=0.99, x=0.5,
+                    xanchor='center',
+                    yanchor='top'
                     ),
-        font=dict(family="Inter, Helvetica, Arial, sans-serif",
-                  color="#d1d5db"
+        font=dict(
+                    family="Inter, Helvetica, Arial, sans-serif",
+                    color="#d1d5db"
                   ),
-        legend=dict(orientation="h", 
+        legend=dict(
+                    orientation="h", 
                     yanchor="bottom",
                     y=1.05,
                     xanchor="center",
@@ -152,9 +155,11 @@ def make_fig(df_wn):
                     font=dict(size=10),
                     bgcolor="rgba(0,0,0,0)"
                     ),
+                    margin=dict(
+                    b=10
+                    ),
                     hovermode="x unified",
-                    height=570
-                    #width=200
+                    height=610
     )
 
     #* Updating annotations. Making them smaller and darker 
