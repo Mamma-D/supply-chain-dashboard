@@ -160,7 +160,7 @@ def make_fig(df_wn):
                     b=10
                     ),
                     hovermode="x unified",
-                    height=610
+                    height=590
     )
 
     #* Updating annotations. Making them smaller and darker 
