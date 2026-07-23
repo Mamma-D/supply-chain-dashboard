@@ -260,7 +260,7 @@ def change_affect_dynamic(company_df, material_df, change_prc=0):
         company_df['correlation'] = company_df['pct_change'].rolling(90).corr(material_df['pct_change'])
 
 
-        change_in_company = (change_prc / 100) * company_df['correlation']
+        change_in_company = (change_prc / 100) * company_df['correlation'].fillna(0)
 
         company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
 
