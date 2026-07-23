@@ -4,19 +4,19 @@ import streamlit as st
 import yfinance as yf
 import summer
 
-#* -----Defining a function for getting user tickers-----
+# * -----Defining a function for getting user tickers-----
+
 
 def get_ticker():
     """this function gets a ticker from user and checks whether its valid or not"""
 
-
     first_ticker = st.text_input("Target Company")
     st.caption("e.g., NVDA, TSLA...")
-    second_ticker = st.text_input('Critical Raw Material')
+    second_ticker = st.text_input("Critical Raw Material")
     st.caption("e.g., Copper (HG=F) or Aluminum (ALI=F)")
 
     if (not first_ticker) or (not second_ticker):
-        st.error('You must fill every inputs!')
+        st.error("You must fill every inputs!")
         st.stop()
 
     first_converted = yf.Ticker(first_ticker)
@@ -39,19 +39,19 @@ def get_ticker():
 
 
 #! -----Setting up the steamlit page-----
-#* Initial page settings
-st.set_page_config(page_title='Chart Showcase',
-                   page_icon="📊",
-                   layout="wide")
+# * Initial page settings
+st.set_page_config(page_title="Chart Showcase", page_icon="📊", layout="wide")
 
-#* Adding a title
-st.markdown("<h1 style='text-align: center;'>Chart Showcase</h1>", unsafe_allow_html=True)
-st.space('small')
+# * Adding a title
+st.markdown(
+    "<h1 style='text-align: center;'>Chart Showcase</h1>", unsafe_allow_html=True
+)
+st.space("small")
 
-#* Defining two columns
-col_1, col_2 = st.columns([1,4])
+# * Defining two columns
+col_1, col_2 = st.columns([1, 4])
 
-#* -----Running column one-----
+# * -----Running column one-----
 with col_1:
     with st.container(border=True):
 
@@ -75,16 +75,18 @@ with col_1:
             st.error(f'The data frame founded for "{second_str}" is empty!')
             st.stop()
 
-        user_pct = st.slider('Simulate Material Price Shock (%)', value=0, min_value=-100, max_value=100)
+        user_pct = st.slider(
+            "Simulate Material Price Shock (%)", value=0, min_value=-100, max_value=100
+        )
         summer.change_affect_dynamic(company_df, material_df, user_pct)
 
         # Creating the plot in plotly
         figs_created = summer.make_fig(dataframes_received, bool(user_pct))
 
 
-#* -----Running column two-----
+# * -----Running column two-----
 with col_2:
     with st.container(border=True):
 
         # Displaying the plot
-        st.plotly_chart(figs_created, config={'displayModeBar': False})
+        st.plotly_chart(figs_created, config={"displayModeBar": False})

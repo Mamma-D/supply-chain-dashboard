@@ -53,12 +53,12 @@ def get_df(user_ticker_1, user_ticker_2):
 def make_fig(df_wn, new_price=False):
     """this function makes charts for each df gievn to it"""
 
-    #* Extracting ticker's names 
+    # * Extracting ticker's names
     dict_keys_list = list(df_wn.keys())
     ticker_name_1 = dict_keys_list[0]
     ticker_name_2 = dict_keys_list[1]
 
-    #* Making two subplots
+    # * Making two subplots
     fig = make_subplots(
         cols=1,
         rows=3 if new_price else 2,
@@ -67,7 +67,7 @@ def make_fig(df_wn, new_price=False):
         subplot_titles=(ticker_name_1, ticker_name_2, "Correlation"),
     )
 
-    #* Defining each chart properties including colors and positions in the plot
+    # * Defining each chart properties including colors and positions in the plot
     color_position = [
         (
             "rgba(37, 152, 28, 0.8)",
@@ -83,7 +83,7 @@ def make_fig(df_wn, new_price=False):
         ),
     ]
 
-    #* Adding each scatter to the plot we made earlier with their properties
+    # * Adding each scatter to the plot we made earlier with their properties
 
     for (name, df), (primary_color, position, fill_1, fill_2) in zip(
         df_wn.items(), color_position
@@ -105,115 +105,105 @@ def make_fig(df_wn, new_price=False):
             col=1,
         )
 
-    #* Adding the new affected price
+    # * Adding the new affected price
     if new_price:
 
-        fig.add_trace(go.Scatter(
-            x=df_wn[ticker_name_1].index,
-            y=df_wn[ticker_name_1]['new_price'],
-            name="Company new price",
-            line=dict(
-                color='red',
-                width=1,
-                dash="solid"
+        fig.add_trace(
+            go.Scatter(
+                x=df_wn[ticker_name_1].index,
+                y=df_wn[ticker_name_1]["new_price"],
+                name="Company new price",
+                line=dict(color="red", width=1, dash="solid"),
+                fill="tozeroy",
+                fillgradient=dict(
+                    type="vertical",
+                    colorscale=[[0.0, "rgba(255,0,0,0)"], [1.0, "rgba(255,0,0,0.5)"]],
+                ),
             ),
-            fill="tozeroy",
-            fillgradient=dict(
-                type="vertical",
-                colorscale=[[0.0, 'rgba(255,0,0,0)'], [1.0, 'rgba(255,0,0,0.5)']]
-            )
-        ),
-        row=1,
-        col=1
+            row=1,
+            col=1,
         )
 
+        # * Adding the correlation line
 
-        #* Adding the correlation line
-
-        fig.add_trace(go.Scatter(
-            x=df_wn[ticker_name_1].index,
-            y=df_wn[ticker_name_1]['correlation'],
-            name="Dynamic Linear Correlation",
-            line=dict(
-                color='red',
-                width=1,
-                dash="solid"
+        fig.add_trace(
+            go.Scatter(
+                x=df_wn[ticker_name_1].index,
+                y=df_wn[ticker_name_1]["correlation"],
+                name="Dynamic Linear Correlation",
+                line=dict(color="red", width=1, dash="solid"),
+                fill="tozeroy",
+                fillgradient=dict(
+                    type="vertical",
+                    colorscale=[[0.0, "rgba(255,0,0,0)"], [1.0, "rgba(255,0,0,0.5)"]],
+                ),
             ),
-            fill="tozeroy",
-            fillgradient=dict(
-                type="vertical",
-                colorscale=[[0.0, 'rgba(255,0,0,0)'], [1.0, 'rgba(255,0,0,0.5)']]
-            )
-        ),
             row=3,
-            col=1
+            col=1,
         )
 
-    #* Applying plotly default dark theme 
+    # * Applying plotly default dark theme
     fig.update_layout(template="plotly_dark")
 
-    #* Updating the plot applying following changes: Adding title, scretching the charts, relocating the legend
+    # * Updating the plot applying following changes: Adding title, scretching the charts, relocating the legend
     fig.update_layout(
         title=dict(
-                    text=f"{ticker_name_1} vs {ticker_name_2}",
-                    y=0.99, x=0.5,
-                    xanchor='center',
-                    yanchor='top'
-                    ),
-        font=dict(
-                    family="Inter, Helvetica, Arial, sans-serif",
-                    color="#d1d5db"
-                  ),
+            text=f"{ticker_name_1} vs {ticker_name_2}",
+            y=0.99,
+            x=0.5,
+            xanchor="center",
+            yanchor="top",
+        ),
+        font=dict(family="Inter, Helvetica, Arial, sans-serif", color="#d1d5db"),
         legend=dict(
-                    orientation="h", 
-                    yanchor="bottom",
-                    y=1.05,
-                    xanchor="center",
-                    x=0.5,
-                    font=dict(size=10),
-                    bgcolor="rgba(0,0,0,0)"
-                    ),
-                    margin=dict(
-                    b=10
-                    ),
-                    hovermode="x unified",
-                    height=590
+            orientation="h",
+            yanchor="bottom",
+            y=1.05,
+            xanchor="center",
+            x=0.5,
+            font=dict(size=10),
+            bgcolor="rgba(0,0,0,0)",
+        ),
+        margin=dict(b=10),
+        hovermode="x unified",
+        height=590,
     )
 
-    #* Updating annotations. Making them smaller and darker 
+    # * Updating annotations. Making them smaller and darker
     fig.update_annotations(font=dict(size=13, color="#9ca3af"))
 
-    #* Removing vertical guide lines in chart
+    # * Removing vertical guide lines in chart
     fig.update_xaxes(showgrid=False)
 
     #! ----- AI code block -----
 
     # *  This block changes your hovering. when you move your mouse in the chart it shows more detailed informations
     fig.update_xaxes(
-                    showspikes=True,
-                    spikemode="across",
-                    spikesnap="cursor",       # follows the mouse smoothly, not jumping between data points
-                    spikedash="dot",          # dotted instead of solid — reads as a guide, not a cut
-                    spikecolor="rgba(255,255,255,0.3)",
-                    spikethickness=1
-                    )
+        showspikes=True,
+        spikemode="across",
+        spikesnap="cursor",  # follows the mouse smoothly, not jumping between data points
+        spikedash="dot",  # dotted instead of solid — reads as a guide, not a cut
+        spikecolor="rgba(255,255,255,0.3)",
+        spikethickness=1,
+    )
 
-    # * This block adds four buttons to top-left that selects time invertals 
+    # * This block adds four buttons to top-left that selects time invertals
     fig.update_xaxes(
-    rangeselector=dict(
-        # x=1,
-        # y=-0.08,
-        # xanchor="right",
-        # yanchor="top",
-        buttons=[
-            dict(count=6, label="6m", step="month", stepmode="backward"),
-            dict(count=1, label="1y", step="year", stepmode="backward"),
-            dict(count=3, label="3y", step="year", stepmode="backward"),
-            dict(step="all", label="All"),
+        rangeselector=dict(
+            # x=1,
+            # y=-0.08,
+            # xanchor="right",
+            # yanchor="top",
+            buttons=[
+                dict(count=6, label="6m", step="month", stepmode="backward"),
+                dict(count=1, label="1y", step="year", stepmode="backward"),
+                dict(count=3, label="3y", step="year", stepmode="backward"),
+                dict(step="all", label="All"),
             ]
         ),
-        #row=2, col=1
-        row=1, col=1
+        # row=2, col=1
+        row=1,
+        col=1,
     )
     #! ----- AI code block -----
 
@@ -231,21 +221,18 @@ def change_affect_dynamic(company_df, material_df, change_prc=0):
 
     if bool(change_prc):
 
-        company_df['Close'] = company_df['Close'].ffill()
-        material_df['Close'] = material_df['Close'].ffill()
+        company_df["Close"] = company_df["Close"].ffill()
+        material_df["Close"] = material_df["Close"].ffill()
 
-        company_df['pct_change'] = company_df['Close'].pct_change()
-        material_df['pct_change'] = material_df['Close'].pct_change().shift(90)
+        company_df["pct_change"] = company_df["Close"].pct_change()
+        material_df["pct_change"] = material_df["Close"].pct_change().shift(90)
 
+        rolled_pct_change = company_df["pct_change"].rolling(90, min_periods=60)
+        company_df["correlation"] = rolled_pct_change.corr(material_df["pct_change"])
 
-        rolled_pct_change = company_df['pct_change'].rolling(90, min_periods=60)
-        company_df['correlation'] = rolled_pct_change.corr(material_df['pct_change'])
+        change_in_company = (change_prc / 100) * company_df["correlation"].fillna(0)
 
-
-        change_in_company = (change_prc / 100) * company_df['correlation'].fillna(0)
-
-        company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
-
+        company_df["new_price"] = company_df["Close"] * (1 + change_in_company)
 
 
 if __name__ == "__main__":
