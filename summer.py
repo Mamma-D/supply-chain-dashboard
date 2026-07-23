@@ -240,6 +240,8 @@ def change_affect(company_df, material_df, change_prc=0):
 
         company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
 
+        return correlation
+
 
 
 if __name__ == "__main__":
