@@ -63,7 +63,7 @@ def make_avg(data_frames_with_name, n=30):
     return data_frames_with_name
 
 
-def make_fig(df_wn, new_price=False):
+def make_fig(df_wn, new_price=False, m_a=False):
     """this function makes charts for each df gievn to it"""
 
     #* Extracting ticker's names 
@@ -84,14 +84,12 @@ def make_fig(df_wn, new_price=False):
     color_position = [
         (
             "rgba(37, 152, 28, 0.8)",
-            "rgba(130, 214, 130, 1)",
             1,
             "rgba(17, 148, 0, 0.0)",
             "rgba(17, 148, 0, 0.4)",
         ),
         (
             "rgba(29, 25, 255, 0.8)",
-            "rgba(107, 105, 255, 0.8)",
             2,
             "rgba(17, 36, 226, 0.0)",
             "rgba(17, 36, 226, 0.4)",
@@ -100,7 +98,7 @@ def make_fig(df_wn, new_price=False):
 
     #* Adding each scatter to the plot we made earlier with their properties
 
-    for (name, df), (primary_color, secondary_color, position, fill_1, fill_2) in zip(
+    for (name, df), (primary_color, position, fill_1, fill_2) in zip(
         df_wn.items(), color_position
     ):
 
@@ -119,19 +117,6 @@ def make_fig(df_wn, new_price=False):
             row=position,
             col=1,
         )
-
-        # * Adding the moving average scatter
-
-        # fig.add_trace(
-        #     go.Scatter(
-        #         x=df.index,
-        #         y=df.iloc[:,-1],
-        #         name=df.columns[-1],
-        #         line=dict(color=secondary_color, width=1, dash="solid"),
-        #     ),
-        #     row=position,
-        #     col=1,
-        # )
 
     #* Adding the new affected price
     if new_price:
@@ -304,5 +289,5 @@ if __name__ == "__main__":
     data_frames_with_average = make_avg(dataframes_received)
 
     figs_created = make_fig(data_frames_with_average)
-
+    print(data_frames_with_average)
     show_fig(figs_created)

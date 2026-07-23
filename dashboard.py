@@ -73,23 +73,20 @@ with col_1:
             st.error(f'The data frame founded for "{second_str}" is empty!')
             st.stop()
 
-        # Making a number input to get moving average period
-        # ma_n = st.number_input('Enter the moving average day period', value=30)
+        #* Moving average
+        ma_toggle = st.toggle("Moving average")
+        if ma_toggle:
+            # Making a number input to get moving average period
+            ma_n = st.number_input('Enter the moving average day period', value=30)
 
-        # Making a slider to get moving average period
-        # ma_n = st.slider('Choose the moving average day period', min_value=1, max_value=365, value=30)
+            # Creating the moving average column in the data frame
+            data_frames_with_average = summer.make_avg(dataframes_received, ma_n)
 
         user_pct = st.slider('Simulate Material Price Shock (%)', value=0, min_value=-100, max_value=100)
         summer.change_affect_dynamic(company_df, material_df, user_pct)
 
-        # if correlation_calculated: 
-        #     st.metric(label="Correlation", value=correlation_calculated.round(3), format='plain')
-
-        # Creating the moving average column in the data frame
-        # data_frames_with_average = summer.make_avg(dataframes_received, ma_n)
-
         # Creating the plot in plotly
-        figs_created = summer.make_fig(dataframes_received, bool(user_pct))
+        figs_created = summer.make_fig(dataframes_received, bool(user_pct), ma_toggle)
 
 
 #* -----Running column two-----
