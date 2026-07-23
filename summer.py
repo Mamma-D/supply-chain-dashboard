@@ -122,16 +122,16 @@ def make_fig(df_wn, new_price=False):
 
         # * Adding the moving average scatter
 
-        fig.add_trace(
-            go.Scatter(
-                x=df.index,
-                y=df.iloc[:,-1],
-                name=df.columns[-1],
-                line=dict(color=secondary_color, width=1, dash="solid"),
-            ),
-            row=position,
-            col=1,
-        )
+        # fig.add_trace(
+        #     go.Scatter(
+        #         x=df.index,
+        #         y=df.iloc[:,-1],
+        #         name=df.columns[-1],
+        #         line=dict(color=secondary_color, width=1, dash="solid"),
+        #     ),
+        #     row=position,
+        #     col=1,
+        # )
 
     #* Adding the new affected price
     if new_price:
@@ -147,7 +147,7 @@ def make_fig(df_wn, new_price=False):
             fill="tozeroy",
             fillgradient=dict(
                 type="vertical",
-                colorscale=[[0.0, 'rgba(255,0,0,0)'], [1.0, 'red']]
+                colorscale=[[0.0, 'rgba(255,0,0,0)'], [1.0, 'rgba(255,0,0,0.5)']]
             )
         ),
         row=1,
