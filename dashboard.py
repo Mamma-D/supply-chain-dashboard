@@ -69,7 +69,7 @@ with col_1:
             st.error(f'The data frame founded for "{first_str}" is empty!')
             st.stop()
 
-        elif material_df[1].empty:
+        elif material_df.empty:
             st.error(f'The data frame founded for "{second_str}" is empty!')
             st.stop()
 
