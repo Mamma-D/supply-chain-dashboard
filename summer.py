@@ -278,7 +278,7 @@ def change_affect_dynamic(company_df, material_df, change_prc=0):
     if bool(change_prc):
 
         company_df['pct_change'] = company_df['Close'].pct_change()
-        material_df['pct_change'] = material_df['Close'].pct_change()
+        material_df['pct_change'] = material_df['Close'].pct_change().shift(90)
 
         company_df['correlation'] = company_df['pct_change'].rolling(90).corr(material_df['pct_change'])
 
