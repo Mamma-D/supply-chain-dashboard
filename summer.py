@@ -210,6 +210,18 @@ def show_fig(fig):
     fig.show()
 
 
+def change_affect(company_df, material_df, change_prc):
+    """this function simulates a price change in material and it's effect on the company stock price"""
+
+    company_df['pct_change'] = company_df['Close'].pct_change()
+    material_df['pct_change'] = material_df['Close'].pct_change()
+
+    merged_df = company_df.join(material_df, lsffix='_company', rsuffix='_material')
+    
+    correlation = merged_df['company_pct_change'].corr(merged_df['material_pct_change'])
+
+
+
 if __name__ == "__main__":
 
     # ticker_rec_1, ticker_rec_2 = get_ticker()
