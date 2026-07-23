@@ -62,11 +62,14 @@ with col_1:
         # checking for empty data frames
         dataframes_list = list(dataframes_received.values())
 
-        if dataframes_list[0].empty:
+        company_df = dataframes_list[0]
+        material_df = dataframes_list[1]
+
+        if company_df.empty:
             st.error(f'The data frame founded for "{first_str}" is empty!')
             st.stop()
 
-        elif dataframes_list[1].empty:
+        elif material_df[1].empty:
             st.error(f'The data frame founded for "{second_str}" is empty!')
             st.stop()
 
