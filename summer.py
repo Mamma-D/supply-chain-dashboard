@@ -225,20 +225,22 @@ def show_fig(fig):
     fig.show()
 
 
-def change_affect(company_df, material_df, change_prc):
+def change_affect(company_df, material_df, change_prc=0):
     """this function simulates a price change in material and it's effect on the company stock price"""
 
-    company_df['pct_change'] = company_df['Close'].pct_change()
-    material_df['pct_change'] = material_df['Close'].pct_change()
+    if change_prc:
 
-    merged_df = company_df.join(material_df, lsffix='_company', rsuffix='_material')
+        company_df['pct_change'] = company_df['Close'].pct_change()
+        material_df['pct_change'] = material_df['Close'].pct_change()
 
-    correlation = merged_df['company_pct_change'].corr(merged_df['material_pct_change'])
+        merged_df = company_df.join(material_df, lsffix='_company', rsuffix='_material')
+
+        correlation = merged_df['company_pct_change'].corr(merged_df['material_pct_change'])
 
 
-    change_in_company = change_prc * correlation
+        change_in_company = change_prc * correlation
 
-    company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
+        company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
 
 
 
