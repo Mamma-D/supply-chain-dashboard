@@ -8,9 +8,10 @@ def get_ticker():
     """this function gets a ticker from user and checks whether its valid or not"""
 
 
-    first_ticker = st.text_input("Target Company (e.g., NVDA, TSLA)")
-    second_ticker = st.text_input('Critical Raw Material (e.g., Copper (HG=F), Oil (CL=F))')
-
+    first_ticker = st.text_input("Target Company")
+    st.caption("e.g., NVDA, TSLA...")
+    second_ticker = st.text_input('Critical Raw Material')
+    st.caption("e.g., Copper (HG=F) or Aluminum (ALI=F)")
 
     if (not first_ticker) or (not second_ticker):
         st.error('You must fill every inputs!')
