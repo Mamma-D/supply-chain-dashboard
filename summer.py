@@ -249,6 +249,22 @@ def change_affect(company_df, material_df, change_prc=0):
         return correlation
 
 
+def change_affect_dynamic(company_df, material_df, change_prc=0):
+    """this function simulates a price change in material and it's effect on the company stock price"""
+
+    if bool(change_prc):
+
+        company_df['pct_change'] = company_df['Close'].pct_change()
+        material_df['pct_change'] = material_df['Close'].pct_change()
+
+        company_df['correlation'] = company_df['pct_change'].rolling(90).corr(material_df['pct_change'])
+
+
+        change_in_company = (change_prc / 100) * company_df['correlation']
+
+        company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
+
+
 
 if __name__ == "__main__":
 
