@@ -141,7 +141,13 @@ def make_fig(df_wn, new_price=False):
             name="Company new price",
             line=dict(
                 color='red',
-                width=1
+                width=1,
+                dash="solid"
+            ),
+            fill="tozeroy",
+            fillgradient=dict(
+                type="vertical",
+                colorscale=[[0.0, 'rgba(255,0,0,0)'], [1.0, 'red']]
             )
         ),
         row=1,
