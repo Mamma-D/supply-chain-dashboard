@@ -277,10 +277,15 @@ def change_affect_dynamic(company_df, material_df, change_prc=0):
 
     if bool(change_prc):
 
+        company_df['Close'] = company_df['Close'].ffill()
+        material_df['Close'] = material_df['Close'].ffill()
+
         company_df['pct_change'] = company_df['Close'].pct_change()
         material_df['pct_change'] = material_df['Close'].pct_change().shift(90)
 
-        company_df['correlation'] = company_df['pct_change'].rolling(90).corr(material_df['pct_change'])
+
+        rolled_pct_change = company_df['pct_change'].rolling(90, min_periods=60)
+        company_df['correlation'] = rolled_pct_change.corr(material_df['pct_change'])
 
 
         change_in_company = (change_prc / 100) * company_df['correlation'].fillna(0)
