@@ -78,7 +78,7 @@ with col_1:
         # Making a slider to get moving average period
         # ma_n = st.slider('Choose the moving average day period', min_value=1, max_value=365, value=30)
 
-        user_pct = st.slider('Choose the percentage change in the material', value=0, min_value=-300, max_value=300)
+        user_pct = st.slider('Choose the percentage change in the material', value=0, min_value=-100, max_value=100)
         correlation_calculated = summer.change_affect(company_df, material_df, user_pct)
 
         if correlation_calculated: 
