@@ -136,8 +136,8 @@ def make_fig(df_wn, new_price=False):
     #* Adding the new affected price
     if new_price:
         fig.add_trace(go.Scatter(
-            y=df_wn[ticker_name_1].index,
-            x=df_wn[ticker_name_1]['new_price'],
+            x=df_wn[ticker_name_1].index,
+            y=df_wn[ticker_name_1]['new_price'],
             name="Company new price",
             line=dict(
                 color='red',
