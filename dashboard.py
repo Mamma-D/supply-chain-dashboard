@@ -79,7 +79,7 @@ with col_1:
         # ma_n = st.slider('Choose the moving average day period', min_value=1, max_value=365, value=30)
 
         user_pct = st.slider('Choose the percentage change in the material', value=0, min_value=-100, max_value=100)
-        summer.change_affect(company_df, material_df, bool(user_pct))
+        summer.change_affect(company_df, material_df, user_pct)
 
         # Creating the moving average column in the data frame
         data_frames_with_average = summer.make_avg(dataframes_received, ma_n)
