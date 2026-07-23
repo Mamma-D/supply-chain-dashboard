@@ -74,10 +74,10 @@ def make_fig(df_wn, new_price=False):
     #* Making two subplots
     fig = make_subplots(
         cols=1,
-        rows=2,
+        rows=3 if new_price else 2,
         shared_xaxes=True,
         vertical_spacing=0.1,
-        subplot_titles=(ticker_name_1, ticker_name_2),
+        subplot_titles=(ticker_name_1, ticker_name_2, "Correlation"),
     )
 
     #* Defining each chart properties including colors and positions in the plot
@@ -135,6 +135,7 @@ def make_fig(df_wn, new_price=False):
 
     #* Adding the new affected price
     if new_price:
+
         fig.add_trace(go.Scatter(
             x=df_wn[ticker_name_1].index,
             y=df_wn[ticker_name_1]['new_price'],
@@ -152,6 +153,28 @@ def make_fig(df_wn, new_price=False):
         ),
         row=1,
         col=1
+        )
+
+
+        #* Adding the correlation line
+
+        fig.add_trace(go.Scatter(
+            x=df_wn[ticker_name_1].index,
+            y=df_wn[ticker_name_1]['correlation'],
+            name="Dynamic Linear Correlation",
+            line=dict(
+                color='red',
+                width=1,
+                dash="solid"
+            ),
+            fill="tozeroy",
+            fillgradient=dict(
+                type="vertical",
+                colorscale=[[0.0, 'rgba(255,0,0,0)'], [1.0, 'rgba(255,0,0,0.5)']]
+            )
+        ),
+            row=3,
+            col=1
         )
 
     #* Applying plotly default dark theme 
