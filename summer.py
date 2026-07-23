@@ -50,18 +50,6 @@ def get_df(user_ticker_1, user_ticker_2):
     return {first_ticker_name: df_1, second_ticker_name: df_2}
 
 
-def make_avg(data_frames_with_name, n=30):
-    """this function adds a new column of 'n MA' to the price data frame.(n default is 30)"""
-
-    for df in data_frames_with_name.values():
-
-        rolled_prices = df["Close"].rolling(n)
-
-        df[f"{n} MA"] = rolled_prices.mean()
-
-    return data_frames_with_name
-
-
 def make_fig(df_wn, new_price=False):
     """this function makes charts for each df gievn to it"""
 
