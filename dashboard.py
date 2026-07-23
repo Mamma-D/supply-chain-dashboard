@@ -78,7 +78,8 @@ with col_1:
         user_pct = st.slider(
             "Simulate Material Price Shock (%)", value=0, min_value=-100, max_value=100
         )
-        summer.change_affect_dynamic(company_df, material_df, user_pct)
+        if user_pct:
+            dataframes_received = summer.change_affect_dynamic(dataframes_received, user_pct)
 
         # Creating the plot in plotly
         figs_created = summer.make_fig(dataframes_received, bool(user_pct))

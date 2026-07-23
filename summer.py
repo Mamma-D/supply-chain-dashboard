@@ -211,10 +211,15 @@ def show_fig(fig):
     fig.show()
 
 
-def change_affect_dynamic(company_df, material_df, change_prc=0):
+def change_affect_dynamic(name_df_dict, change_prc=0):
     """this function simulates a price change in material and it's effect on the company stock price"""
 
     if bool(change_prc):
+
+        dfs = list(name_df_dict.values())
+        company_df = dfs[0]
+        material_df = dfs[1]
+
 
         company_df["Close"] = company_df["Close"].ffill()
         material_df["Close"] = material_df["Close"].ffill()
@@ -228,6 +233,14 @@ def change_affect_dynamic(company_df, material_df, change_prc=0):
         change_in_company = (change_prc / 100) * company_df["correlation"].fillna(0)
 
         company_df["new_price"] = company_df["Close"] * (1 + change_in_company)
+
+
+        names = list(name_df_dict.keys())
+        company_name = names[0]
+        material_name = names[1]
+
+        return {company_name:company_df,
+                material_name:material_df}
 
 
 if __name__ == "__main__":
