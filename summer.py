@@ -63,7 +63,7 @@ def make_avg(data_frames_with_name, n=30):
     return data_frames_with_name
 
 
-def make_fig(df_wn):
+def make_fig(df_wn, new_price=False):
     """this function makes charts for each df gievn to it"""
 
     #* Extracting ticker's names 
@@ -131,6 +131,21 @@ def make_fig(df_wn):
             ),
             row=position,
             col=1,
+        )
+
+    #* Adding the new affected price
+    if new_price:
+        fig.add_trace(go.Scatter(
+            y=df_wn[ticker_name_1].index,
+            x=df_wn[ticker_name_1]['new_price'],
+            name="Company new price",
+            line=dict(
+                color='red',
+                width=1
+            )
+        ),
+        row=1,
+        col=1
         )
 
     #* Applying plotly default dark theme 
