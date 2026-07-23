@@ -4,6 +4,7 @@ and it displays its charts"""
 import yfinance as yf
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import pandas as pd
 
 
 def get_ticker(n_of_runs=2):
