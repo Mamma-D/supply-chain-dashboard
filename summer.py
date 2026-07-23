@@ -62,7 +62,7 @@ def make_avg(data_frames_with_name, n=30):
     return data_frames_with_name
 
 
-def make_fig(df_wn, new_price=False, m_a=False):
+def make_fig(df_wn, new_price=False):
     """this function makes charts for each df gievn to it"""
 
     #* Extracting ticker's names 
