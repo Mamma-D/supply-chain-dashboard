@@ -108,7 +108,7 @@ def make_fig(df_wn):
             go.Scatter(
                 x=df.index,
                 y=df.Close,
-                name=f"{name} Stock Price",
+                name=f"{name}",
                 line=dict(color=primary_color, width=1.2),
                 fill="tozeroy",
                 fillgradient=dict(
