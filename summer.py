@@ -70,7 +70,7 @@ def make_fig(df_wn):
     ticker_name_1 = dict_keys_list[0]
     ticker_name_2 = dict_keys_list[1]
 
-    #* Making a subplot
+    #* Making two subplots
     fig = make_subplots(
         cols=1,
         rows=2,
