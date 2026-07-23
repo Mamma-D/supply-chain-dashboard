@@ -190,10 +190,6 @@ def make_fig(df_wn, new_price=False):
     # * This block adds four buttons to top-left that selects time invertals
     fig.update_xaxes(
         rangeselector=dict(
-            # x=1,
-            # y=-0.08,
-            # xanchor="right",
-            # yanchor="top",
             buttons=[
                 dict(count=6, label="6m", step="month", stepmode="backward"),
                 dict(count=1, label="1y", step="year", stepmode="backward"),
@@ -201,7 +197,6 @@ def make_fig(df_wn, new_price=False):
                 dict(step="all", label="All"),
             ]
         ),
-        # row=2, col=1
         row=1,
         col=1,
     )
