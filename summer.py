@@ -236,7 +236,7 @@ def change_affect(company_df, material_df, change_prc=0):
         correlation = company_df['pct_change'].corr(material_df['pct_change'])
 
 
-        change_in_company = change_prc * correlation
+        change_in_company = (change_prc / 100) * correlation
 
         company_df['new_price'] = company_df['Close'] * (1 + change_in_company)
 
