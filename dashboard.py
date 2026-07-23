@@ -8,8 +8,8 @@ def get_ticker():
     """this function gets a ticker from user and checks whether its valid or not"""
 
 
-    first_ticker = st.text_input("First ticker")
-    second_ticker = st.text_input("Second ticker")
+    first_ticker = st.text_input("Target Company (e.g., NVDA, TSLA)")
+    second_ticker = st.text_input('Critical Raw Material (e.g., Copper (HG=F), Oil (CL=F))')
 
 
     if (not first_ticker) or (not second_ticker):
