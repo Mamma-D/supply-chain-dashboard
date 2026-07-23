@@ -233,9 +233,9 @@ def change_affect(company_df, material_df, change_prc=0):
         company_df['pct_change'] = company_df['Close'].pct_change()
         material_df['pct_change'] = material_df['Close'].pct_change()
 
-        merged_df = company_df.join(material_df, lsffix='_company', rsuffix='_material')
+        merged_df = company_df.join(material_df, lsuffix='_company', rsuffix='_material')
 
-        correlation = merged_df['company_pct_change'].corr(merged_df['material_pct_change'])
+        correlation = merged_df['pct_change_company'].corr(merged_df['pct_change_material'])
 
 
         change_in_company = change_prc * correlation
