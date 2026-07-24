@@ -1,12 +1,10 @@
 # 📈 What-if Scenario Simulator for CEOs
 
-A data science project...
+A data science project that simulates how changes in raw material prices could hypothetically influence a company's stock price using historical market data.
 
 🌐 **Live App:** https://supply-chain-dashboard-mscacf99pl9rtcv7pu2ndm.streamlit.app/
 
 ![Application Screenshot](images/screenshot.png)
-
-A data science project that simulates how changes in raw material prices could hypothetically influence a company's stock price using historical market data and rolling Pearson correlation.
 
 > **Disclaimer**
 >
@@ -37,6 +35,25 @@ This project was built as a summer data science exercise to strengthen practical
 
 ---
 
+<<<<<<< HEAD
+=======
+## Demo
+
+You can try the application here:
+
+**https://supply-chain-dashboard-mscacf99pl9rtcv7pu2ndm.streamlit.app/**
+
+### Screenshot
+
+> ![an overview of the dashbaord](images/screenshot.png)
+
+```md
+![Application Screenshot](images/dashboard.png)
+```
+
+---
+
+>>>>>>> 12e6f71067974a47d2ff4ba85ccf257f36fc6409
 ## How It Works
 
 The application follows these steps:
