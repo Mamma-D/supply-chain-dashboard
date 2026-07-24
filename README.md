@@ -35,25 +35,6 @@ This project was built as a summer data science exercise to strengthen practical
 
 ---
 
-<<<<<<< HEAD
-=======
-## Demo
-
-You can try the application here:
-
-**https://supply-chain-dashboard-mscacf99pl9rtcv7pu2ndm.streamlit.app/**
-
-### Screenshot
-
-> ![an overview of the dashbaord](images/screenshot.png)
-
-```md
-![Application Screenshot](images/dashboard.png)
-```
-
----
-
->>>>>>> 12e6f71067974a47d2ff4ba85ccf257f36fc6409
 ## How It Works
 
 The application follows these steps:
