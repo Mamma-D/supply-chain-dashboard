@@ -165,6 +165,8 @@ This project is licensed under the MIT License.
 
 ## Author
 
+This is just a summer project to move my head around data science fundamentals, so i appreciate any suggestions or ciritcs about anything. Looking forward to hear your experiences!
+
 **Mohammad Gheybi**
 
 Industrial Engineering Student | Aspiring Data Scientist
