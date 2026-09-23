@@ -18,14 +18,10 @@ def get_ticker():
     second_ticker = st.selectbox("Critical Raw Material", MATERIALS)
     st.caption("The material you wanna see its impact on")
 
-    if (not first_ticker) or (not second_ticker):
-        st.error("You must choose both inputs first.")
-        st.stop()
-
     return first_ticker, second_ticker
 
 
-#! -----Setting up the steamlit page-----
+#! -----Setting up the streamlit page-----
 # * Initial page settings
 st.set_page_config(page_title="Chart Showcase", page_icon="📊", layout="wide")
 
