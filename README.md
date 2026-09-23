@@ -26,7 +26,7 @@ This project was built as a summer data science exercise to strengthen practical
 
 ## Features
 
-- 📊 Retrieve **5 years** of historical stock price data using Yahoo Finance
+- 📊 Retrieve **5 years** of historical stock price data using Yahoo Finance (Update: since Yahoo Finance no longer allows API calls from streamlit cloud servers, I switched to offline data)
 - 🏭 Simulate changes in raw material prices
 - 📈 Calculate a **dynamic Pearson correlation** between material prices and company stock prices
 - ⏳ Apply a configurable **90-day business lag** to better reflect delayed market effects
