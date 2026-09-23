@@ -1,7 +1,6 @@
 """this script is for the front-end streamlit page"""
 
 import streamlit as st
-import yfinance as yf
 import summer
 
 # * -----Defining a function for getting user tickers-----
@@ -10,32 +9,20 @@ import summer
 def get_ticker():
     """this function gets a ticker from user and checks whether its valid or not"""
 
-    first_ticker = st.text_input("Target Company")
-    st.caption("e.g., NVDA, TSLA...")
-    second_ticker = st.text_input("Critical Raw Material")
-    st.caption("e.g., Copper (HG=F) or Aluminum (ALI=F)")
+    COMPANIES = summer.COMPANIES.keys()
+    MATERIALS = summer.MATERIALS.keys()
+
+    first_ticker = st.selectbox("Target Company", COMPANIES)
+    st.caption("The company's stock you wanna view")
+
+    second_ticker = st.selectbox("Critical Raw Material", MATERIALS)
+    st.caption("The material you wanna see its impact on")
 
     if (not first_ticker) or (not second_ticker):
-        st.error("You must fill every inputs!")
+        st.error("You must choose both inputs first.")
         st.stop()
 
-    first_converted = yf.Ticker(first_ticker)
-    second_converted = yf.Ticker(second_ticker)
-
-    # checking to see if tickers are valid
-    if len(first_converted.info) < 2:
-        st.error(f'Ticker "{first_ticker}" does not exist!')
-        st.stop()
-
-    elif len(second_converted.info) < 2:
-        st.error(f'Ticker "{second_ticker}" does not exist!')
-        st.stop()
-
-    elif first_ticker == second_ticker:
-        st.error("You can't type the same thing twice!")
-        st.stop()
-
-    return ((first_converted, first_ticker), (second_converted, second_ticker))
+    return first_ticker, second_ticker
 
 
 #! -----Setting up the steamlit page-----
@@ -56,24 +43,10 @@ with col_1:
     with st.container(border=True):
 
         # Getting the tickers from user
-        (first_tick, first_str), (second_tick, second_str) = get_ticker()
+        first_tick, second_tick = get_ticker()
 
         # Requesting the data frame
         dataframes_received = summer.get_df(first_tick, second_tick)
-
-        # checking for empty data frames
-        dataframes_list = list(dataframes_received.values())
-
-        company_df = dataframes_list[0]
-        material_df = dataframes_list[1]
-
-        if company_df.empty:
-            st.error(f'The data frame founded for "{first_str}" is empty!')
-            st.stop()
-
-        elif material_df.empty:
-            st.error(f'The data frame founded for "{second_str}" is empty!')
-            st.stop()
 
         user_pct = st.slider(
             "Simulate Material Price Shock (%)", value=0, min_value=-100, max_value=100

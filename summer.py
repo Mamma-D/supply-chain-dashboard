@@ -2,56 +2,38 @@
 and it displays its charts"""
 
 import yfinance as yf
+import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-def get_ticker(n_of_runs=2):
-    """this function gets a ticker from user and checks whether its valid or not"""
+COMPANIES = {'Tesla, Inc.':"dataframes/stocks/TSLA.csv",
+              'NVIDIA Corporation': "dataframes/stocks/NVDA.csv",
+              'Apple Inc.': "dataframes/stocks/AAPL.csv",
+              'Microsoft Corporation': "dataframes/stocks/MSFT.csv",
+              'Taiwan Semiconductor Manufacturing Company Limited':"dataframes/stocks/TSM.csv"}
 
-    tickers = []
+MATERIALS = {'Aluminum': "dataframes/materials/ALI=F-aluminum.csv",
+             'Copper': "dataframes/materials/HG=F-copper.csv",
+             'Steel': "dataframes/materials/HRC=F-steel.csv",
+             'Iron': "dataframes/materials/TIO=F-iron.csv"}
 
-    for _ in range(n_of_runs):
+def get_df(stock, material):
+    """this function returns a dictionary containing both stock and material data frames with their names as keys"""
 
-        while True:
+    company_path = COMPANIES.get(stock)
 
-            user_input = input("\n-----Enter the ticker name-----\n")
+    material_path = MATERIALS.get(material)
 
-            try:
-                input_cap = user_input.strip().upper()
-                ticker_obj = yf.Ticker(input_cap)
-                five_year_history = ticker_obj.history("5y")
+    company_df = pd.read_csv(company_path)
 
-                # checking to see if the ticker is valid
-                if five_year_history.empty:
-                    raise NameError(f"Name {input_cap} does not exist.")
+    material_df = pd.read_csv(material_path)
 
-                tickers.append(five_year_history)
-                break
-
-            except (AttributeError, NameError):
-                print("\n-----Your input isn't valid, try again-----")
-
-    return tuple(tickers)
-
-
-def get_df(user_ticker_1, user_ticker_2):
-    """this function receives each tickers data frame from yahoo finance"""
-
-    df_1 = user_ticker_1.history("5y", actions=False)
-    df_2 = user_ticker_2.history("5y", actions=False)
-
-    if (df_1.empty) and (df_2.empty):
-
-        raise ValueError("Data frames could not be retrieved. (empty data frames)")
-
-    first_ticker_name = user_ticker_1.info.get("shortName")
-    second_ticker_name = user_ticker_2.info.get("shortName")
-    return {first_ticker_name: df_1, second_ticker_name: df_2}
+    return {stock: company_df, material: material_df}
 
 
 def make_fig(df_wn, new_price=False):
-    """this function makes charts for each df gievn to it"""
+    """this function makes charts for each df given to it"""
 
     # * Extracting ticker's names
     dict_keys_list = list(df_wn.keys())
@@ -92,7 +74,7 @@ def make_fig(df_wn, new_price=False):
         # * Adding the price scatter (lines)
         fig.add_trace(
             go.Scatter(
-                x=df.index,
+                x=df.Date,
                 y=df.Close,
                 name=f"{name}",
                 line=dict(color=primary_color, width=1.2),
@@ -110,7 +92,7 @@ def make_fig(df_wn, new_price=False):
 
         fig.add_trace(
             go.Scatter(
-                x=df_wn[ticker_name_1].index,
+                x=df_wn[ticker_name_1].Date,
                 y=df_wn[ticker_name_1]["new_price"],
                 name="Company new price",
                 line=dict(color="red", width=1, dash="solid"),
@@ -128,7 +110,7 @@ def make_fig(df_wn, new_price=False):
 
         fig.add_trace(
             go.Scatter(
-                x=df_wn[ticker_name_1].index,
+                x=df_wn[ticker_name_1].Date,
                 y=df_wn[ticker_name_1]["correlation"],
                 name="Dynamic Linear Correlation",
                 line=dict(color="red", width=1, dash="solid"),
