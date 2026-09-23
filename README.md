@@ -22,6 +22,8 @@ Instead of attempting to predict the future, the application uses historical mar
 
 This project was built as a summer data science exercise to strengthen practical Python skills and gain hands-on experience with data analysis and visualization.
 
+**❗ UPDATE: Since Yahoo Finance tightened their policies on making API calls, the script was no longer allowed to receive live data so I had to make a change. After reviewing some platforms and possible solutions with Claude, I decided to use offline data. So from now on, datas are not LIVE and stored in the dataframes folder, the script was changed to use them instead of making an API call.**
+
 ---
 
 ## Features
@@ -92,6 +94,9 @@ streamlit run dashboard.py
 ├── dashboard.py      # Streamlit frontend
 ├── summer.py         # Core simulation engine
 ├── requirements.txt
+├── dataframes
+    └── materials # CSV files for materials
+    └── stocks # CSV files for companies
 ├──README.md
 └── images/
     └── screenshot.png
